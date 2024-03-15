@@ -54,21 +54,25 @@ function getAllMicDevices() {
     }
 
 
+// DEV Log/notes: make it possible to the select the audio device from the list of enumerated devices
+// use the selected device's deviceID and set it in the mediarecorder params to use the specific device
+// using zustand to set the selected device, so that the value is globally accessible
+// ui: listbox listing the available devices; choosing the device from dropdown will set the selected device to be stored
 
 export default function MicDevicesList() {
-//   const [selected, setSelected] = useState(audio_mic_devices[0])
-  const selectedDevice = useMicDevice((state) => state.deviceID)
-  const updateSelectedDevice = useMicDevice((state) => state.setDeviceID)
+  const [selected, setSelected] = useState()
+  // const selectedDevice = useMicDevice((state) => state.deviceID)
+  // const updateSelectedDevice = useMicDevice((state) => state.setDeviceID)
 //   const allAvailableDevices = useMicDevice((state) => state.allDevices)
 //   console.log(allAvailableDevices)
-  console.log(selectedDevice)
+  // console.log(selectedDevice)
 
-    const [allDevices, setAllDevices] = useState()
+    const [allDevices, setAllDevices] = useState<Dictionary[]>()
 
   useEffect(() => {
     const allAvailDevices = getAllMicDevices()
     console.log(allAvailDevices)
-    // setAllDevices(allAvailDevices)
+    setAllDevices(allAvailDevices)
   }, []);
 
 //   const availableMicDevices = getAllMicDevices()
@@ -76,10 +80,10 @@ export default function MicDevicesList() {
 
   return (
     <>
-    {selectedDevice && (
-        <>
+    {/* {selectedDevice && (
+        <> */}
         <div className="fixed top-16 w-72">
-            <Listbox value={selectedDevice} onChange={updateSelectedDevice}>
+            <Listbox value={selectedDevice} onChange={setSelected}>
             <div className="relative mt-1">
                 <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                 <span className="block truncate">{selectedDevice.dev_label}</span>
@@ -97,7 +101,7 @@ export default function MicDevicesList() {
                 leaveTo="opacity-0"
                 >
                 <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                    {allAvailableDevices.map((device, deviceIdx) => (
+                    {allDevices.map((device, deviceIdx) => (
                     <Listbox.Option
                         key={deviceIdx}
                         className={({ active }) =>
@@ -130,7 +134,7 @@ export default function MicDevicesList() {
             </div>
             </Listbox>
         </div>
-    </>)}
+    {/* </>)} */}
     </>
   )
 };

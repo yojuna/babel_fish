@@ -1,0 +1,21 @@
+version: '3'
+
+name: whisper-web
+
+services:
+  caddy:
+    container_name: caddy
+    image: caddy
+    restart: always
+    ports:
+      - '8084:80'
+      - '443:443'
+    volumes:
+      - caddy-config:/config
+      - caddy-data:/data
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./index.html:/usr/share/caddy/index.html
+
+volumes:
+  caddy-config:
+  caddy-data:

@@ -1,5 +1,7 @@
 # BabelFish
 
+![Babel Fish from Hitchhiker's Guide](./src/assets/babelfish.jpg)
+
 Real time speech2speech language translation directly in your browser! Built with [🤗 Transformers.js](https://github.com/xenova/transformers.js). 
 
 Using local Whisper, publicly available machine translation models and text2speech models, bundled up in an end to end pipeline.

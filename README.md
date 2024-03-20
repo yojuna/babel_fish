@@ -14,11 +14,21 @@ Currently working on chaining all the modules together to run more seamlessly, a
 
 ## Getting Started / Running locally
 
+0. Installation/ Env setup
+
+    Create a new conda environment named babelfish using `conda create -n babelfish nodejs`
+
+    ```
+    conda activate babelfish
+    ```
+
+    Here, we are using conda to manage the nodejs and npm javascript packages. Use whatever works for you.
+
 1. Clone the repo and install dependencies:
 
     ```bash
     git clone https://github.com/yojuna/babel_fish.git
-    cd whisper-web
+    cd babel_fish
     npm install
     ```
 
@@ -30,16 +40,31 @@ Currently working on chaining all the modules together to run more seamlessly, a
     > Firefox users need to change the `dom.workers.modules.enabled` setting in `about:config` to `true` to enable Web Workers.
     > Check out [this issue](https://github.com/xenova/whisper-web/issues/8) for more details.
 
-3. Open the link (e.g., [http://localhost:5173/](http://localhost:5173/)) in your browser. Or alternatively, you can open it on your mobile browser at the internal IP address of your wifi network. Refer to the output after running `npm run dev`
+3. Open the link (e.g., [http://localhost:5173/](http://localhost:5173/)) in your browser. Or alternatively, you can open it on your mobile browser at the internal IP address of your wifi network. Refer to the command line output after running `npm run dev`
 
+This is how it currently looks like when running locally in your browser
+
+Desktop view:
+![app home page view running locally](./public/current_view.jpg)
+
+On mobile:
+![app home page view running locally](./public/current_mob.jpg)
+Note: For running on mobile locally, chrome/firefox security disables audio recording permissions for local self-signed/selh-hosted sites. Workaround for HTTPS setup for local mobile devices on the same network to be added soon. Work in progress. Currently trying to use Caddy V2 to setup the local https enabled server for hosting the app on the same network.
 
 ## Dev Log
 
 TODOs
 
+- [DONE] add whisper transcription module
+
+- [DONE] translation of transcribed audio (from whisper)
+
+- [] speech generation in targer language from translated text
+
 - [] real time audio transcription without user prompting (transcribes the stream of audio input continuously). Needed for uninterrupted usage to achieve real-time transcription.
 
 - [] Select audio mic device (phone main mic, or connected bluetooth earphone device mic) from drop down, to use as the speech audio input. Later, to initialize with the connected earphone mic by default.
+    - in progress ...
 
 - [] set audio output device (set to connected earphones)
 

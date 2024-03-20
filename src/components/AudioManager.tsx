@@ -8,7 +8,6 @@ import Constants from "../utils/Constants";
 import { Transcriber } from "../hooks/useTranscriber";
 import Progress from "./Progress";
 import AudioRecorder from "./AudioRecorder";
-import MicDevicesList from "./AudioInput";
 
 function titleCase(str: string) {
     str = str.toLowerCase();
@@ -241,10 +240,20 @@ export function AudioManager(props: { transcriber: Transcriber }) {
     return (
         <>
             <div className='flex flex-col justify-center items-center rounded-lg bg-white shadow-xl shadow-black/5 ring-1 ring-slate-700/10'>
-                {/* <div>
-                    <MicDevicesList/>
-                </div> */}
                 <div className='flex flex-row space-x-2 py-2 w-full px-2'>
+                    {navigator.mediaDevices && (
+                        <>
+                            <VerticalBar />
+                            <RecordTile
+                                icon={<MicrophoneIcon />}
+                                text={"Record"}
+                                setAudioData={(e) => {
+                                    props.transcriber.onInputChange();
+                                    setAudioFromRecording(e);
+                                }}
+                            />
+                        </>
+                    )}
                     <UrlTile
                         icon={<AnchorIcon />}
                         text={"From URL"}
@@ -267,19 +276,6 @@ export function AudioManager(props: { transcriber: Transcriber }) {
                             });
                         }}
                     />
-                    {navigator.mediaDevices && (
-                        <>
-                            <VerticalBar />
-                            <RecordTile
-                                icon={<MicrophoneIcon />}
-                                text={"Record"}
-                                setAudioData={(e) => {
-                                    props.transcriber.onInputChange();
-                                    setAudioFromRecording(e);
-                                }}
-                            />
-                        </>
-                    )}
                 </div>
                 {
                     <AudioDataBar
@@ -687,9 +683,7 @@ function RecordModal(props: {
             title={"From Recording"}
             content={
                 <>
-                    {/* <MicDevicesList/> */}
                     {"Record audio using your microphone"}
-                    
                     <AudioRecorder onRecordingComplete={onRecordingComplete} />
                 </>
             }

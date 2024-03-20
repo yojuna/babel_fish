@@ -72,7 +72,7 @@ export default function Transcript({ transcribedData }: Props) {
                         {chunk.text}
                     </div>
                 ))}
-            {transcribedData && !transcribedData.isBusy && (
+            {/* {transcribedData && !transcribedData.isBusy && (
                 <div className='w-full text-right'>
                     <button
                         onClick={exportTXT}
@@ -87,7 +87,7 @@ export default function Transcript({ transcribedData }: Props) {
                         Export JSON
                     </button>
                 </div>
-            )}
+            )} */}
         </div>
     );
 }

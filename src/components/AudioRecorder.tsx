@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from "react";
 
 import { formatAudioTimestamp } from "../utils/AudioUtils";
 import { webmFixDuration } from "../utils/BlobFix";
-import MicDevicesList from "./AudioInput";
-import { useMicDevice } from "../store/MicDevice";
 
 function getMimeType() {
     const types = [
@@ -33,35 +31,14 @@ export default function AudioRecorder(props: {
     const chunksRef = useRef<Blob[]>([]);
 
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const micDeviceID = useMicDevice(state => state.deviceID)
 
     const startRecording = async () => {
         // Reset recording (if any)
         setRecordedBlob(null);
 
         let startTime = Date.now();
-        // <MicDevicesList/>
 
         try {
-
-            // if (!navigator.mediaDevices?.enumerateDevices) {
-            //     console.log("enumerateDevices() not supported.");
-            //   } else {
-            //     // List cameras and microphones.
-            //     navigator.mediaDevices
-            //       .enumerateDevices()
-            //       .then((devices) => {
-            //         devices.forEach((device) => {
-            //           console.log(`${device.kind}: ${device.label} id = ${device.deviceId}`);
-            //         });
-            //       })
-            //       .catch((err) => {
-            //         console.error(`${err.name}: ${err.message}`);
-            //       });
-            //   }
-              
-            
-
             if (!streamRef.current) {
                 streamRef.current = await navigator.mediaDevices.getUserMedia({
                     audio: true,

@@ -27,6 +27,7 @@ self.addEventListener('message', async (event) => {
     let translator = await MyTranslationPipeline.getInstance(x => {
         // We also add a progress callback to the pipeline so that we can
         // track model loading.
+        // console.log('check here')
         self.postMessage(x);
     });
 

@@ -2,9 +2,13 @@ import { AudioManager } from "./components/AudioManager";
 import Transcript from "./components/Transcript";
 import { useTranscriber } from "./hooks/useTranscriber";
 import TranslationManager from "./components/TranslationManager"
+import { useTranslatedStore } from "./store/translatedStore";
+import SpeechSynthesisManager from "./components/SpeechSynthesisManager";
 
 function App() {
     const transcriber = useTranscriber();
+    // const { text } = useTranslatedStore()
+    const translatedText = useTranslatedStore((state) => state.text);
 
     return (
         <div className='flex justify-center items-center min-h-screen'>
@@ -21,6 +25,8 @@ function App() {
                 <AudioManager transcriber={transcriber} />
                 <Transcript transcribedData={transcriber.output} />
                 <TranslationManager transcribedData={transcriber.output} />
+                <SpeechSynthesisManager translatedData={translatedText} />
+                
             </div>
         </div>
     );

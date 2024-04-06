@@ -85,6 +85,8 @@ TODOs
     - PWA with local install capability
     - resource usage stats (optional)
 
+- [] convert remaining js/jsx files to typescript
+
 ### useful links/references
 
 - [Transformers.js pipeline API](https://huggingface.co/docs/transformers.js/en/pipelines)
@@ -98,6 +100,13 @@ TODOs
 
 - [hf - seamless streaming](https://huggingface.co/facebook/seamless-streaming)
 
+### misc references' links
+
+- [comlink github repo](https://github.com/GoogleChromeLabs/comlink)
+    - [Comlink: Web Workers simplified](https://davidea.st/articles/comlink-simple-web-worker/)
+
+
+
 ## Credits
 
 Heavily inspired by and built/modified upon
@@ -105,3 +114,6 @@ Heavily inspired by and built/modified upon
 - [Snapdrop](https://github.com/RobinLinus/snapdrop): local file sharing in your browser.
 - All the beautiful, publicly available Open Source models from Huggingface <3
     - citations/sources/links to be updated soon.
+
+
+## 
